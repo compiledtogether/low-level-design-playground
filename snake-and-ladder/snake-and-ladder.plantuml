@@ -1,0 +1,58 @@
+@startuml snake-and-ladder
+
+class SnakeAndLadder {
+    - board: Board
+    - players: List<Player>
+    - currentPlayer: Player
+    - dice: Dice
+    - isGameOver: boolean
+    + playGame(): void
+    + rollDice(): int
+    + movePlayer(player: Player, steps: int): void
+    + checkForSnakeOrLadder(player: Player): void
+    + isGameWon(): boolean
+}
+
+class Board {
+    - size: int
+    - snakes: List<Snake>
+    - ladders: List<Ladder>
+    + getSize(): int
+    + getSnakes(): List<Snake>
+    + getLadders(): List<Ladder>
+}
+
+class Player {
+    - name: string
+    - position: int
+    + getName(): string
+    + getPosition(): int
+    + setPosition(position: int): void
+}
+
+class Dice {
+    + roll(): int
+}
+
+class Snake {
+    - start: int
+    - end: int
+    + getStart(): int
+    + getEnd(): int
+}
+
+class Ladder {
+    - start: int
+    - end: int
+    + getStart(): int
+    + getEnd(): int
+}
+
+SnakeAndLadder --> Board
+SnakeAndLadder --> Player
+SnakeAndLadder --> Dice
+SnakeAndLadder "1" *-- "2..n" Player
+Board --> Snake
+Board --> Ladder
+
+@enduml
